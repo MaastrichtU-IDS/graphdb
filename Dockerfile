@@ -7,9 +7,14 @@ ARG version=8.6.0
 ARG edition=free 
 
 # Environment variables, to be used for the docker image
-ENV GDB_HEAP_SIZE=500g
+# 500Go for the server, and 8Go for desktop computer
+#ENV GDB_HEAP_SIZE=500g
+#ENV GDB_MAX_MEM=500g
+ENV GDB_HEAP_SIZE=8g
+ENV GDB_MAX_MEM=8g
+
+ENV GDB_HEAP_SIZE=8g
 ENV GDB_MIN_MEM=1g
-ENV GDB_MAX_MEM=500g
 ENV GRAPHDB_PARENT_DIR=/opt/graphdb
 ENV GRAPHDB_HOME=${GRAPHDB_PARENT_DIR}/home
 ENV GRAPHDB_INSTALL_DIR=${GRAPHDB_PARENT_DIR}/dist
