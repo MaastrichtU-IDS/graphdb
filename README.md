@@ -1,3 +1,8 @@
+## Download GraphDB from Ontotext
+
+https://ontotext.com/products/graphdb/
+
+
 ## Build GraphDB
 
 ```shell
