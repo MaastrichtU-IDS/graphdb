@@ -7,8 +7,8 @@ Download as a stand-alone server (zip): https://ontotext.com/products/graphdb/
 ## Build GraphDB
 
 ```shell
-docker build -t "graphdb:8.8.0" .
-docker run -it "graphdb:8.8.0" .
+docker build -t "graphdb:8.8.1" .
+docker run -it "graphdb:8.8.1" .
 
 # Alex's script to run it
 ./run.sh

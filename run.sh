@@ -9,4 +9,4 @@ docker run --detach \
     --volume /data/graphdb:/opt/graphdb/home \
     --volume /data/graphdb-import:/root/graphdb-import \
     --restart unless-stopped \
-    graphdb:8.8.0
+    graphdb
