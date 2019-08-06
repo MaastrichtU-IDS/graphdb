@@ -3,7 +3,7 @@ FROM azul/zulu-openjdk
 LABEL maintainer "Alexander Malic <alexander.malic@maastrichtuniversity.nl>"
 
 # Build time arguments
-ARG version=8.10.0
+ARG version=8.10.1
 ARG edition=free 
 
 # Environment variables, to be used for the docker image
