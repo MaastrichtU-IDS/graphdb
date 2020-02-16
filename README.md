@@ -4,14 +4,14 @@ Download as a stand-alone server free version (zip): https://ontotext.com/produc
 
 ## Build GraphDB
 
-```shell
+```bash
 docker build -t graphdb:8.10.1 --build-arg version=8.10.1 .
+
+docker run -d --name graphdb -p 7200:7200 -v /data/graphdb:/opt/graphdb/home -v /data/graphdb-import:/root/graphdb-import graphdb
 
 # Alex's script to run it
 ./run.sh
 ```
-
-
 
 ## Create GraphDB repo and users
 
