@@ -1,8 +1,6 @@
 ## Download GraphDB from Ontotext
 
-Download as a stand-alone server free version (zip): https://ontotext.com/products/graphdb/
-
-And place it in the root of this git repository.
+Download as a stand-alone server free version (zip)at https://ontotext.com/products/graphdb/ and place it in the root of this git repository.
 
 ## Build
 
