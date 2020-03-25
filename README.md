@@ -41,3 +41,5 @@ docker run -d --name graphdb -p 7200:7200 -v /data/graphdb:/opt/graphdb/home -v 
 Ontotext GraphDB official Docker images for free version: https://github.com/Ontotext-AD/graphdb-docker
 
 Ontotext GraphDB on DockerHub: https://hub.docker.com/r/ontotext/graphdb/
+
+GraphDB inspired by https://github.com/manasRK/graphdb-free
