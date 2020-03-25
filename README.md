@@ -2,16 +2,25 @@
 
 Download as a stand-alone server free version (zip): https://ontotext.com/products/graphdb/
 
-## Build GraphDB
+And place it in the root of this git repository.
+
+## Build
+
+Provide the version of the downloaded GraphDB installation file, e.g. for version `9.1.1`
 
 ```bash
 docker build -t graphdb:9.1.1 --build-arg version=9.1.1 .
-
-docker run -d --name graphdb -p 7200:7200 -v /data/graphdb:/opt/graphdb/home -v /data/graphdb-import:/root/graphdb-import graphdb
-
-# Alex's script to run it
-./run.sh
 ```
+
+## Run
+
+```bash
+docker run -d --name graphdb -p 7200:7200 -v /data/graphdb:/opt/graphdb/home -v /data/graphdb-import:/root/graphdb-import graphdb
+```
+
+> Access at http://localhost:7200
+
+> Import folder shared in `/data/graphdb-import` and GraphDB home folder shared in `/data/graphdb`
 
 ## Create GraphDB repo and users
 
@@ -31,4 +40,6 @@ docker run -d --name graphdb -p 7200:7200 -v /data/graphdb:/opt/graphdb/home -v 
 
 ## See also
 
-GraphDB official Docker images for free version: https://github.com/Ontotext-AD/graphdb-docker
+Ontotext GraphDB official Docker images for free version: https://github.com/Ontotext-AD/graphdb-docker
+
+Ontotext GraphDB on DockerHub: https://hub.docker.com/r/ontotext/graphdb/
