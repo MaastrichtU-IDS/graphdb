@@ -29,3 +29,6 @@ docker run -d --name graphdb -p 7200:7200 -v /data/graphdb:/opt/graphdb/home -v 
     - Repository rights > Write right on `Any data repository`
     - Click `Create`
 
+## See also
+
+GraphDB official Docker images for free version: https://github.com/Ontotext-AD/graphdb-docker
