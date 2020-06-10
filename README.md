@@ -4,11 +4,13 @@ Download as a stand-alone server free version (zip)at https://ontotext.com/produ
 
 ## Build
 
-Provide the version of the downloaded GraphDB installation file, e.g. for version `9.1.1`
+Provide the version of the downloaded GraphDB installation file at build ⚙️
 
 ```bash
-docker build -t graphdb:9.1.1 --build-arg version=9.1.1 .
+docker build -t graphdb --build-arg version=9.3.0 .
 ```
+
+> Using the GraphDB installation file `graphdb-free-9.3.0-dist.zip`
 
 ## Run
 
