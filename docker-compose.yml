@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  graphdb:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        version: 9.3.0
+    container_name: graphdb
+    restart: unless-stopped
+    command: [ "-Dgraphdb.workbench.cors.enable=true" ]
+    environment: 
+      - GDB_HEAP_SIZE=4G
+      ## We recommend to use https://github.com/nginx-proxy/nginx-proxy and https://github.com/nginx-proxy/docker-letsencrypt-nginx-proxy-companion
+      ## to route to GraphDB
+      # - VIRTUAL_HOST=graphdb.mydomain.com
+      # - LETSENCRYPT_HOST=graphdb.mydomain.com
+      # - VIRTUAL_PORT=7200
+    ports: 
+      - 7200:7200
+    volumes:
+      - /data/graphdb/data:/opt/graphdb/dist/data
+      - /data/graphdb/work:/opt/graphdb/dist/work
+      - /data/graphdb/logs:/opt/graphdb/dist/logs
+      - /data/graphdb-import:/root/graphdb-import
+
