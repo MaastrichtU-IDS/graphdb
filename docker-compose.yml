@@ -9,7 +9,7 @@ services:
         version: 9.3.0
     container_name: graphdb
     restart: unless-stopped
-    command: [ "-Dgraphdb.workbench.cors.enable=true" ]
+    command: [ "-Dgraphdb.home=/opt/graphdb/home", "-Dgraphdb.workbench.cors.enable=true" ]
     environment: 
       - GDB_HEAP_SIZE=4G
       ## We recommend to use https://github.com/nginx-proxy/nginx-proxy and https://github.com/nginx-proxy/docker-letsencrypt-nginx-proxy-companion
@@ -20,8 +20,6 @@ services:
     ports: 
       - 7200:7200
     volumes:
-      - /data/graphdb/data:/opt/graphdb/dist/data
-      - /data/graphdb/work:/opt/graphdb/dist/work
-      - /data/graphdb/logs:/opt/graphdb/dist/logs
+      - /data/graphdb:/opt/graphdb/home
       - /data/graphdb-import:/root/graphdb-import
 

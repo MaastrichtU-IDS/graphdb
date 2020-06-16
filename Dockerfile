@@ -1,39 +1,28 @@
-FROM azul/zulu-openjdk
-
-LABEL maintainer "Alexander Malic <alexander.malic@maastrichtuniversity.nl>"
+FROM adoptopenjdk/openjdk11:alpine
 
 # Build time arguments
 ARG version=9.3.0
-ARG edition=free 
+ARG edition=free
 
-# Environment variables, to be used for the docker image
-# 500Go for the server, and 8Go for desktop computer
-#ENV GDB_HEAP_SIZE=500g
-#ENV GDB_MAX_MEM=500g
+ENV GRAPHDB_PARENT_DIR=/opt/graphdb
+ENV GRAPHDB_HOME=${GRAPHDB_PARENT_DIR}/home
 
-ENV GDB_MAX_MEM=8g
-ENV GDB_MIN_MEM=1g
-ENV GDB_HEAP_SIZE=8g
+ENV GRAPHDB_INSTALL_DIR=${GRAPHDB_PARENT_DIR}/dist
 
-ENV GRAPHDB_HOME=/opt/graphdb/home
+ADD graphdb-free-${version}-dist.zip /tmp
 
-# Copy the installation file recieved after registration
-ADD graphdb-${edition}-${version}-dist.zip /tmp
+RUN apk add --no-cache bash util-linux procps net-tools busybox-extras wget less && \
+    mkdir -p ${GRAPHDB_PARENT_DIR} && \
+    cd ${GRAPHDB_PARENT_DIR} && \
+    unzip /tmp/graphdb-free-${version}-dist.zip && \
+    rm /tmp/graphdb-free-${version}-dist.zip && \
+    mv graphdb-${edition}-${version} dist && \
+    mkdir -p ${GRAPHDB_HOME}
 
-RUN apt-get update && \
-  apt-get install unzip && \
-  mkdir -p ${GRAPHDB_HOME} && \
-  cd ${GRAPHDB_HOME} && \
-  unzip /tmp/graphdb-${edition}-${version}-dist.zip && \
-  mv graphdb-${edition}-${version} . && \
-  rm /tmp/graphdb-${edition}-${version}-dist.zip
+ENV PATH=${GRAPHDB_INSTALL_DIR}/bin:$PATH
 
-
-ENV PATH=${GRAPHDB_HOME}/bin:$PATH
-
-EXPOSE 7200
+CMD ["-Dgraphdb.home=/opt/graphdb/home"]
 
 ENTRYPOINT ["/opt/graphdb/dist/bin/graphdb"]
 
-CMD ["-Dgraphdb.home=/opt/graphdb/dist -Dorg.xml.sax.driver=com.sun.org.apache.xerces.internal.parsers.SAXParser -Djdk.xml.entityExpansionLimit=1000000"]
-
+EXPOSE 7200
