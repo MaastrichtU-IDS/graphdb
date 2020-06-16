@@ -26,14 +26,28 @@ docker run -d --name graphdb -p 7200:7200 -v /data/graphdb:/opt/graphdb/home -v 
 
 ### Preload repository
 
+Go to the `preload` subfolder to run the GraphDB preload
+
+```bash
+cd preload/
+```
+
 By default it will:
 
 * Create a repository defined in the `graphdb-repo-config.ttl` file (can be changed manually)
 
 * upload a test ntriple files in the `graphdb-preload/import` subfolder. Feel free to change the import folder path in the `docker-compose.yml`
 
+Change the filepath in the `preload/.env` file:
+
 ```bash
-cd graphdb-preload
+IMPORT_FOLDER=./import
+REPOSITORY_CONFIG_FILE=./graphdb-repo-config.ttl
+```
+
+Build and run:
+
+```bash
 docker-compose build
 docker-compose up -d
 ```
@@ -42,13 +56,13 @@ docker-compose up -d
 
 ### Start GraphDB
 
-To start GraphDB run the following from the root of the repository git repository:
+To start GraphDB run the following **from the root of the git repository**:
 
 ```bash
 docker-compose up -d
 ```
 
-> It will pickup the repo created by the preload in `/data/graphdb/data`
+> It will use the repo created by the preload in `/data/graphdb/data`
 
 ## Create GraphDB repo and users
 

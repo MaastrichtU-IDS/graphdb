@@ -13,16 +13,16 @@ services:
     # Load all files from ../import in repo defined in ./graphdb-repo-config.ttl
     entrypoint: [ "/opt/graphdb/dist/bin/preload", "--force", "--recursive", "-c", "/root/graphdb-repo-config.ttl", "/root/graphdb-import" ]
 
-    # Preload given file to existing repository (here cohd)
-    # command: [ "/opt/graphdb/dist/bin/preload", "-f", "-i", "cohd", "/root/graphdb-import/trek/cohd" ]
+    # Preload given file to existing repository (here "demo")
+    # command: [ "/opt/graphdb/dist/bin/preload", "-f", "-i", "demo", "/root/graphdb-import" ]
     environment: 
       - GDB_HEAP_SIZE=2G
     ports:
       - 7200:7200
     volumes:
-      # Change folde to import all RDF files here (in place of './import')
-      - ./import:/root/graphdb-import
-      - ./graphdb-repo-config.ttl:/root/graphdb-repo-config.ttl
+      # Change folder to import all RDF files here (in place of './import')
+      - ${IMPORT_FOLDER}:/root/graphdb-import
+      - ${REPOSITORY_CONFIG_FILE}:/root/graphdb-repo-config.ttl
       - /data/graphdb/data:/opt/graphdb/dist/data
       - /data/graphdb/work:/opt/graphdb/dist/work
       - /data/graphdb/logs:/opt/graphdb/dist/logs
